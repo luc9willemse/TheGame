@@ -5,7 +5,9 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 import dev.LucWillemse.TheGame.display.Display;
+import dev.LucWillemse.TheGame.gfx.Assets;
 import dev.LucWillemse.TheGame.gfx.ImageLoader;
+import dev.LucWillemse.TheGame.gfx.SpriteSheet;
 
 public class Game implements Runnable {
 
@@ -20,7 +22,6 @@ public class Game implements Runnable {
 	private BufferStrategy bs;
 	private Graphics g;
 	
-	private BufferedImage testImage;
 	
 	public Game(String title, int width, int height) {
 		
@@ -31,8 +32,11 @@ public class Game implements Runnable {
 	
 	private void init() {
 		display = new Display(title, width, height);
-		testImage = ImageLoader.loadImage("/textures/test.png"); 
+		Assets.init();
+		
 	}
+	
+	
 	
 	private void tick() {
 		
@@ -49,7 +53,7 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 		//draw here
 		
-		g.drawImage(testImage, 20 , 20, null);
+		g.drawImage(Assets.grass, 10, 20, null);
 		
 		//end draw
 		bs.show();
