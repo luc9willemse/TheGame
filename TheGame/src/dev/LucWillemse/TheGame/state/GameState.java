@@ -17,7 +17,7 @@ public class GameState extends State {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.sand, 0, 0, null);
+		
 	}
 
 }

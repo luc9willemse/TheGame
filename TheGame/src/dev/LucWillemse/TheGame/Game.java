@@ -9,6 +9,7 @@ import dev.LucWillemse.TheGame.gfx.Assets;
 import dev.LucWillemse.TheGame.gfx.ImageLoader;
 import dev.LucWillemse.TheGame.gfx.SpriteSheet;
 import dev.LucWillemse.TheGame.state.GameState;
+import dev.LucWillemse.TheGame.state.MenuState;
 import dev.LucWillemse.TheGame.state.State;
 
 public class Game implements Runnable {
@@ -25,6 +26,7 @@ public class Game implements Runnable {
 	private Graphics g;
 	
 	private State gameState;
+	private State menuState;
 	
 	
 	public Game(String title, int width, int height) {
@@ -39,6 +41,7 @@ public class Game implements Runnable {
 		Assets.init();
 		
 		gameState = new GameState();
+		menuState = new MenuState();
 		State.setState(gameState);
 	}
 	
