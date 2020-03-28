@@ -8,6 +8,8 @@ import dev.LucWillemse.TheGame.display.Display;
 import dev.LucWillemse.TheGame.gfx.Assets;
 import dev.LucWillemse.TheGame.gfx.ImageLoader;
 import dev.LucWillemse.TheGame.gfx.SpriteSheet;
+import dev.LucWillemse.TheGame.state.GameState;
+import dev.LucWillemse.TheGame.state.State;
 
 public class Game implements Runnable {
 
@@ -22,6 +24,8 @@ public class Game implements Runnable {
 	private BufferStrategy bs;
 	private Graphics g;
 	
+	private State gameState;
+	
 	
 	public Game(String title, int width, int height) {
 		
@@ -34,12 +38,15 @@ public class Game implements Runnable {
 		display = new Display(title, width, height);
 		Assets.init();
 		
+		gameState = new GameState();
+		State.setState(gameState);
 	}
 	
 	
 	
 	private void tick() {
-		
+		if(State.getState() != null)
+			State.getState().tick();
 	}
 	
 	private void render() {
@@ -53,7 +60,8 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 		//draw here
 		
-		g.drawImage(Assets.grass, 10, 20, null);
+		if(State.getState() != null)
+			State.getState().render(g);
 		
 		//end draw
 		bs.show();
